@@ -1,0 +1,59 @@
+nom_dept;nom_region;agri_1;vol_agri_1;agri_2;vol_agri_2;agri_3;vol_agri_3;elev_1;vol_elev_1;elev_2;vol_elev_2;elev_3;vol_elev_3;peche_type;vol_peche
+Djerem;Adamaoua;Coton;18930;Arachide;11358;Oignon;5679;Caprins;54515;Ovins;32709;Bovins;16354;Aucune;0
+Faro-et-Deo;Adamaoua;Mil;16817;Coton;10090;Maïs;5045;Ovins;52743;Caprins;31645;Bovins;15822;Aucune;0
+Mayo-Banyo;Adamaoua;Sorgho;16288;Maïs;9772;Oignon;4886;Bovins;50857;Ovins;30514;Volailles;15257;Aucune;0
+Mbere;Adamaoua;Sorgho;19017;Arachide;11410;Maïs;5705;Caprins;52866;Bovins;31719;Volailles;15859;Aucune;0
+Vina;Adamaoua;Mil;19812;Oignon;11887;Maïs;5943;Volailles;51962;Caprins;31177;Ovins;15588;Aucune;0
+Haute-Sanaga;Centre;Cacao;27322;Manioc;16393;Café Robusta;8196;Porcins;9705;Petits Ruminants;5823;Pisciculture;2911;Aucune;0
+Lekie;Centre;Banane-Plantain;27317;Café Robusta;16390;Huile de Palme;8195;Volailles;8507;Petits Ruminants;5104;Pisciculture;2552;Aucune;0
+Mbam-et-Inoubou;Centre;Hévéa;26518;Huile de Palme;15910;Manioc;7955;Pisciculture;6084;Volailles;3650;Porcins;1825;Aucune;0
+Mbam-et-Kim;Centre;Café Robusta;28333;Hévéa;16999;Manioc;8499;Porcins;5486;Petits Ruminants;3291;Volailles;1645;Aucune;0
+Mefou-et-Afamba;Centre;Hévéa;27716;Cacao;16629;Huile de Palme;8314;Porcins;5691;Volailles;3414;Pisciculture;1707;Aucune;0
+Mefou-et-Akono;Centre;Huile de Palme;27849;Manioc;16709;Café Robusta;8354;Pisciculture;9541;Petits Ruminants;5724;Porcins;2862;Aucune;0
+Mfoundi;Centre;Banane-Plantain;27046;Cacao;16227;Café Robusta;8113;Pisciculture;5535;Petits Ruminants;3321;Volailles;1660;Aucune;0
+Nyong-et-Kelle;Centre;Huile de Palme;26770;Manioc;16062;Cacao;8031;Petits Ruminants;5898;Pisciculture;3538;Porcins;1769;Aucune;0
+Nyong-et-Mfoumou;Centre;Huile de Palme;28254;Manioc;16952;Café Robusta;8476;Porcins;7410;Petits Ruminants;4446;Pisciculture;2223;Aucune;0
+Nyong-et-So'o;Centre;Huile de Palme;27725;Cacao;16635;Banane-Plantain;8317;Volailles;9618;Pisciculture;5770;Petits Ruminants;2885;Aucune;0
+Boumba-et-Ngoko;Est;Manioc;28517;Hévéa;17110;Banane-Plantain;8555;Volailles;8740;Pisciculture;5244;Petits Ruminants;2622;Aucune;0
+Haut-Nyong;Est;Manioc;27635;Banane-Plantain;16581;Café Robusta;8290;Porcins;5657;Petits Ruminants;3394;Volailles;1697;Aucune;0
+Kadey;Est;Banane-Plantain;25887;Hévéa;15532;Cacao;7766;Porcins;8317;Petits Ruminants;4990;Pisciculture;2495;Aucune;0
+Lom-et-Djerem;Est;Café Robusta;26449;Cacao;15869;Manioc;7934;Porcins;8337;Pisciculture;5002;Petits Ruminants;2501;Aucune;0
+Diamare;Extreme-Nord;Mil;16732;Maïs;10039;Arachide;5019;Ovins;54099;Caprins;32459;Bovins;16229;Aucune;0
+Logone-et-Chari;Extreme-Nord;Sorgho;18285;Maïs;10971;Arachide;5485;Caprins;54700;Bovins;32820;Volailles;16410;Pêche Continentale;14706
+Mayo-Danay;Extreme-Nord;Arachide;16109;Maïs;9665;Oignon;4832;Ovins;54943;Bovins;32965;Caprins;16482;Pêche Continentale;9543
+Mayo-Kani;Extreme-Nord;Arachide;17238;Oignon;10342;Sorgho;5171;Caprins;54741;Ovins;32844;Bovins;16422;Aucune;0
+Mayo-Sava;Extreme-Nord;Maïs;17807;Mil;10684;Sorgho;5342;Caprins;51706;Bovins;31023;Ovins;15511;Aucune;0
+Mayo-Tsanaga;Extreme-Nord;Coton;18845;Oignon;11307;Mil;5653;Volailles;52846;Caprins;31707;Bovins;15853;Aucune;0
+Moungo;Littoral;Café Robusta;29049;Banane-Plantain;17429;Manioc;8714;Petits Ruminants;9153;Volailles;5491;Pisciculture;2745;Aucune;0
+Nkam;Littoral;Banane-Plantain;26517;Huile de Palme;15910;Hévéa;7955;Volailles;5599;Pisciculture;3359;Porcins;1679;Aucune;0
+Sanaga-Maritime;Littoral;Hévéa;27182;Cacao;16309;Huile de Palme;8154;Volailles;6442;Petits Ruminants;3865;Pisciculture;1932;Pêche Artisanale Maritime;5523
+Wouri;Littoral;Cacao;28883;Banane-Plantain;17329;Manioc;8664;Volailles;7890;Porcins;4734;Petits Ruminants;2367;Pêche Artisanale Maritime;9677
+Benoue;Nord;Oignon;15925;Arachide;9555;Coton;4777;Bovins;51576;Volailles;30945;Caprins;15472;Pêche Continentale;6086
+Faro;Nord;Oignon;17282;Arachide;10369;Sorgho;5184;Ovins;53703;Caprins;32221;Bovins;16110;Aucune;0
+Mayo-Louti;Nord;Arachide;16638;Oignon;9982;Mil;4991;Volailles;51431;Bovins;30858;Ovins;15429;Aucune;0
+Mayo-Rey;Nord;Maïs;15212;Sorgho;9127;Mil;4563;Bovins;54159;Volailles;32495;Caprins;16247;Aucune;0
+Boyo;Nord-Ouest;Haricot;15652;Maïs;9391;Café Arabica;4695;Volailles;22300;Porcins;13380;Lapins;6690;Aucune;0
+Bui;Nord-Ouest;Haricot;12664;Tomate;7598;Maïs;3799;Porcins;23491;Lapins;14094;Caprins;7047;Aucune;0
+Donga-Mantung;Nord-Ouest;Café Arabica;14277;Maïs;8566;Haricot;4283;Lapins;24386;Caprins;14631;Volailles;7315;Aucune;0
+Menchum;Nord-Ouest;Carotte;16202;Pomme de terre;9721;Tomate;4860;Porcins;21240;Lapins;12744;Caprins;6372;Aucune;0
+Mezam;Nord-Ouest;Pomme de terre;16839;Tomate;10103;Maïs;5051;Volailles;21632;Porcins;12979;Caprins;6489;Aucune;0
+Momo;Nord-Ouest;Haricot;15908;Pomme de terre;9544;Maïs;4772;Volailles;24686;Lapins;14811;Caprins;7405;Aucune;0
+Ngo-Ketunjia;Nord-Ouest;Carotte;16302;Pomme de terre;9781;Café Arabica;4890;Volailles;23185;Porcins;13911;Lapins;6955;Aucune;0
+Bamboutos;Ouest;Maïs;14880;Carotte;8928;Tomate;4464;Lapins;23989;Volailles;14393;Caprins;7196;Aucune;0
+Haut-Nkam;Ouest;Pomme de terre;13978;Maïs;8386;Haricot;4193;Lapins;23493;Caprins;14095;Volailles;7047;Aucune;0
+Hauts-Plateaux;Ouest;Pomme de terre;13413;Haricot;8047;Café Arabica;4023;Porcins;23896;Caprins;14337;Volailles;7168;Aucune;0
+Koung-Khi;Ouest;Café Arabica;15550;Tomate;9330;Haricot;4665;Caprins;23585;Lapins;14151;Porcins;7075;Aucune;0
+Menoua;Ouest;Maïs;12588;Haricot;7552;Café Arabica;3776;Volailles;23575;Lapins;14145;Porcins;7072;Aucune;0
+Mifi;Ouest;Haricot;15668;Maïs;9400;Carotte;4700;Volailles;20466;Lapins;12279;Porcins;6139;Aucune;0
+Nde;Ouest;Maïs;16242;Café Arabica;9745;Pomme de terre;4872;Porcins;24154;Lapins;14492;Volailles;7246;Aucune;0
+Noun;Ouest;Maïs;13609;Tomate;8165;Café Arabica;4082;Lapins;24750;Caprins;14850;Volailles;7425;Aucune;0
+Dja-et-Lobo;Sud;Huile de Palme;29148;Café Robusta;17488;Manioc;8744;Volailles;8773;Petits Ruminants;5263;Porcins;2631;Aucune;0
+Mvila;Sud;Hévéa;28810;Cacao;17286;Manioc;8643;Porcins;6679;Petits Ruminants;4007;Pisciculture;2003;Aucune;0
+Ocean;Sud;Manioc;27610;Hévéa;16566;Café Robusta;8283;Petits Ruminants;7217;Pisciculture;4330;Porcins;2165;Pêche Artisanale Maritime;3493
+Vallee-du-Ntem;Sud;Huile de Palme;25509;Café Robusta;15305;Hévéa;7652;Volailles;5830;Porcins;3498;Pisciculture;1749;Aucune;0
+Fako;Sud-Ouest;Cacao;27654;Banane-Plantain;16592;Café Robusta;8296;Pisciculture;5512;Porcins;3307;Petits Ruminants;1653;Pêche Artisanale Maritime;3063
+Koupe-Manengouba;Sud-Ouest;Café Robusta;29740;Manioc;17844;Banane-Plantain;8922;Petits Ruminants;9482;Volailles;5689;Porcins;2844;Aucune;0
+Lebialem;Sud-Ouest;Manioc;28294;Cacao;16976;Hévéa;8488;Volailles;7675;Petits Ruminants;4605;Pisciculture;2302;Aucune;0
+Manyu;Sud-Ouest;Hévéa;27720;Huile de Palme;16632;Manioc;8316;Volailles;7307;Pisciculture;4384;Porcins;2192;Aucune;0
+Meme;Sud-Ouest;Cacao;29132;Banane-Plantain;17479;Huile de Palme;8739;Pisciculture;7111;Petits Ruminants;4266;Porcins;2133;Aucune;0
+Ndian;Sud-Ouest;Café Robusta;27884;Hévéa;16730;Banane-Plantain;8365;Pisciculture;5320;Volailles;3192;Petits Ruminants;1596;Pêche Artisanale Maritime;14217

@@ -1,0 +1,59 @@
+nom_dept;nom_region;culture_type;culture_tonnes;elevage_type;elevage_tetes
+Djerem;Adamaoua;Sorgho;8260;Bovins;28167
+Faro-et-Deo;Adamaoua;Sorgho;13066;Bovins;61230
+Mayo-Banyo;Adamaoua;Arachide;9621;Bovins;27705
+Mbere;Adamaoua;Arachide;13546;Caprins;91769
+Vina;Adamaoua;Oignon;19399;Bovins;82812
+Haute-Sanaga;Centre;Cacao;23812;Volailles;24651
+Lekie;Centre;Café;10948;Porcins;32184
+Mbam-et-Inoubou;Centre;Café;25560;Porcins;34199
+Mbam-et-Kim;Centre;Huile de Palme;13545;Pêche (Pisciculture);21432
+Mefou-et-Afamba;Centre;Café;13990;Porcins;25856
+Mefou-et-Akono;Centre;Manioc;13841;Pêche (Pisciculture);9518
+Mfoundi;Centre;Huile de Palme;18875;Porcins;27872
+Nyong-et-Kelle;Centre;Café;22333;Pêche (Pisciculture);33925
+Nyong-et-Mfoumou;Centre;Huile de Palme;22751;Volailles;15568
+Nyong-et-So'o;Centre;Café;10840;Volailles;14022
+Boumba-et-Ngoko;Est;Cacao;18421;Volailles;28076
+Haut-Nyong;Est;Café;14750;Porcins;25074
+Kadey;Est;Café;19699;Porcins;9496
+Lom-et-Djerem;Est;Banane;17811;Volailles;7745
+Diamare;Extreme-Nord;Arachide;9758;Caprins;52722
+Logone-et-Chari;Extreme-Nord;Oignon;23220;Bovins;56311
+Mayo-Danay;Extreme-Nord;Sorgho;9846;Caprins;79286
+Mayo-Kani;Extreme-Nord;Coton;9926;Bovins;80185
+Mayo-Sava;Extreme-Nord;Arachide;8225;Caprins;70983
+Mayo-Tsanaga;Extreme-Nord;Oignon;21579;Bovins;35802
+Moungo;Littoral;Manioc;21095;Volailles;12201
+Nkam;Littoral;Café;15274;Volailles;20741
+Sanaga-Maritime;Littoral;Banane;10950;Pêche (Pisciculture);27509
+Wouri;Littoral;Manioc;29251;Volailles;28008
+Benoue;Nord;Sorgho;10539;Bovins;89052
+Faro;Nord;Oignon;13504;Caprins;88420
+Mayo-Louti;Nord;Sorgho;13871;Caprins;88670
+Mayo-Rey;Nord;Sorgho;8477;Caprins;88555
+Boyo;Nord-Ouest;Haricot;8654;Volailles;19370
+Bui;Nord-Ouest;Café;11161;Volailles;24808
+Donga-Mantung;Nord-Ouest;Café;18238;Porcins;30656
+Menchum;Nord-Ouest;Café;16289;Volailles;40674
+Mezam;Nord-Ouest;Pomme de terre;13650;Porcins;35775
+Momo;Nord-Ouest;Pomme de terre;14358;Volailles;57663
+Ngo-Ketunjia;Nord-Ouest;Maïs;15560;Porcins;48192
+Bamboutos;Ouest;Maïs;7515;Volailles;22297
+Haut-Nkam;Ouest;Pomme de terre;11265;Volailles;19926
+Hauts-Plateaux;Ouest;Pomme de terre;6033;Porcins;50773
+Koung-Khi;Ouest;Haricot;13077;Porcins;54009
+Menoua;Ouest;Haricot;15216;Volailles;35993
+Mifi;Ouest;Maïs;9061;Porcins;33666
+Nde;Ouest;Haricot;10088;Porcins;16800
+Noun;Ouest;Pomme de terre;10467;Porcins;23256
+Dja-et-Lobo;Sud;Banane;17335;Pêche (Pisciculture);26124
+Mvila;Sud;Cacao;21088;Volailles;12513
+Ocean;Sud;Huile de Palme;17062;Porcins;18350
+Vallee-du-Ntem;Sud;Cacao;11839;Porcins;25159
+Fako;Sud-Ouest;Manioc;23190;Pêche (Pisciculture);23219
+Koupe-Manengouba;Sud-Ouest;Banane;22474;Porcins;18431
+Lebialem;Sud-Ouest;Manioc;18097;Pêche (Pisciculture);21200
+Manyu;Sud-Ouest;Cacao;24609;Porcins;25831
+Meme;Sud-Ouest;Banane;16824;Pêche (Pisciculture);19151
+Ndian;Sud-Ouest;Banane;22393;Porcins;25776
