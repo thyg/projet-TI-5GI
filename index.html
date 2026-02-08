@@ -5,11 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Webmapping Cameroun - 5GI</title>
     
+    <!-- Leaflet CSS -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    
     <style>
         body { margin: 0; font-family: 'Segoe UI', Arial, sans-serif; }
-        #map { height: 100vh; width: 100%; background: #cce3f0; /* Fond bleu eau pour faire ressortir la terre */ }
+        #map { height: 100vh; width: 100%; background: #cce3f0; }
         
+        /* Panneau d'information */
         .info-panel {
             position: absolute; top: 10px; right: 10px; z-index: 1000;
             background: white; padding: 20px; border-radius: 8px;
@@ -19,24 +22,20 @@
         h3 { margin-top: 0; color: #2c3e50; border-bottom: 2px solid #3498db; padding-bottom: 10px; }
         select, input { width: 95%; padding: 8px; margin-bottom: 10px; border: 1px solid #ddd; border-radius: 4px; }
         
+        /* Légende */
         .legend { margin-top: 15px; font-size: 0.9em; line-height: 1.5em; }
         .legend-item { display: flex; align-items: center; margin-bottom: 5px; }
         .color-box { width: 20px; height: 20px; margin-right: 10px; border: 1px solid #999; }
 
-        /* Style de la popup */
+        /* Popup */
         .popup-table { width: 100%; border-collapse: collapse; font-size: 0.9em; }
         .popup-table td { padding: 3px; border-bottom: 1px solid #eee; }
         .popup-header { background: #2c3e50; color: white; padding: 5px; text-align: center; border-radius: 3px; }
         
-        /* Style des étiquettes (noms des départements) */
+        /* Étiquettes sur la carte */
         .dept-label {
-            background: transparent;
-            border: none;
-            box-shadow: none;
-            font-size: 10px;
-            font-weight: bold;
-            color: #333;
-            text-shadow: 1px 1px 0 #fff;
+            background: transparent; border: none; box-shadow: none;
+            font-size: 10px; font-weight: bold; color: #333; text-shadow: 1px 1px 0 #fff;
         }
     </style>
 </head>
@@ -45,14 +44,10 @@
     <div class="info-panel">
         <h3>🇨🇲 SIG Cameroun</h3>
         
-        <!-- Recherche Intelligente -->
         <label>🔍 Rechercher :</label>
         <input type="text" id="search-input" list="dept-list" placeholder="Tapez un nom..." onchange="searchDept()">
-        <datalist id="dept-list">
-            <!-- Cette liste sera remplie automatiquement par JavaScript -->
-        </datalist>
+        <datalist id="dept-list"></datalist>
         
-        <!-- Filtres -->
         <label>📊 Thématique :</label>
         <select id="mode" onchange="updateMap()">
             <option value="agriculture">🌱 Agriculture</option>
@@ -68,131 +63,130 @@
 
     <div id="map"></div>
 
+    <!-- Leaflet JS -->
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
     <script>
-        // Zoom initial
+        // ---------------------------------------------------------
+        // CONFIGURATION
+        // ---------------------------------------------------------
+        
+        // L'URL de ton API sur Render (C'est celle-ci qui remplace GeoServer)
+        const API_URL = "https://projet-ti-5gi.onrender.com/api/donnees";
+
+        // ---------------------------------------------------------
+        // INITIALISATION CARTE
+        // ---------------------------------------------------------
         var map = L.map('map').setView([5, 12], 6);
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '© OpenStreetMap' }).addTo(map);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { 
+            attribution: '© OpenStreetMap' 
+        }).addTo(map);
 
         var geojsonLayer;
         var globalData;
-        
-        // --- NOUVELLES COULEURS (Plus contrastées) ---
+
+        // ---------------------------------------------------------
+        // FONCTIONS D'AFFICHAGE (Couleurs & Style)
+        // ---------------------------------------------------------
         function getColor(val, mode) {
             if (mode === 'peche') {
-                // Si pas de pêche (0), on met du gris clair transparent
-                return val > 10000 ? '#08519c' : // Bleu foncé
-                       val > 5000  ? '#3182bd' :
-                       val > 1000  ? '#6baed6' :
-                       val > 0     ? '#bdd7e7' : 
-                                     '#f0f0f0'; // Gris (Pas de pêche)
+                return val > 10000 ? '#08519c' : val > 5000 ? '#3182bd' : val > 1000 ? '#6baed6' : val > 0 ? '#bdd7e7' : '#f0f0f0';
             }
             if (mode === 'agriculture') {
-                return val > 22000 ? '#00441b' : // Vert très sombre
-                       val > 18000 ? '#006d2c' :
-                       val > 14000 ? '#41ae76' :
-                       val > 10000 ? '#99d8c9' : 
-                                     '#e5f5f9'; // Vert très clair
+                return val > 22000 ? '#00441b' : val > 18000 ? '#006d2c' : val > 14000 ? '#41ae76' : val > 10000 ? '#99d8c9' : '#e5f5f9';
             }
             // Elevage
-            return val > 45000 ? '#7f0000' : // Rouge sombre
-                   val > 30000 ? '#d7301f' :
-                   val > 15000 ? '#fc8d59' :
-                   val > 5000  ? '#fdcc8a' : 
-                                 '#fff7ec'; // Orange pâle
+            return val > 45000 ? '#7f0000' : val > 30000 ? '#d7301f' : val > 15000 ? '#fc8d59' : val > 5000 ? '#fdcc8a' : '#fff7ec';
         }
 
         function style(feature) {
             var mode = document.getElementById('mode').value;
             var val = 0;
+            var p = feature.properties;
             
-            if (mode === 'agriculture') val = feature.properties.vol_agri_1;
-            if (mode === 'elevage') val = feature.properties.vol_elev_1;
-            if (mode === 'peche') val = feature.properties.vol_peche;
+            if (mode === 'agriculture') val = p.vol_agri_1 || 0;
+            if (mode === 'elevage') val = p.vol_elev_1 || 0;
+            if (mode === 'peche') val = p.vol_peche || 0;
 
-            // Si c'est le mode Pêche et que la valeur est 0, on change le style
             var isEmpty = (mode === 'peche' && val === 0);
 
             return {
                 fillColor: getColor(val, mode),
-                weight: 1, // Épaisseur de la bordure
-                opacity: 1,
-                color: '#555', // Couleur de la bordure (Gris foncé pour bien délimiter)
-                fillOpacity: isEmpty ? 0.3 : 0.8 // Plus transparent si vide
+                weight: 1, opacity: 1, color: '#555',
+                fillOpacity: isEmpty ? 0.3 : 0.8
             };
         }
 
         function onEachFeature(feature, layer) {
             var p = feature.properties;
-
-            // 1. AJOUT DU TOOLTIP (Nom qui s'affiche au survol)
-            layer.bindTooltip(p.nom, {
-                permanent: false, // Change en true si tu veux que ce soit toujours affiché
-                direction: "center",
-                className: "dept-label"
-            });
             
-            // 2. Remplissage de la liste de recherche
+            // Tooltip (Nom au survol)
+            layer.bindTooltip(p.nom, { permanent: false, direction: "center", className: "dept-label" });
+            
+            // Liste de recherche
             var option = document.createElement('option');
             option.value = p.nom;
             document.getElementById('dept-list').appendChild(option);
             
-            // 3. Popup détaillée
+            // Popup (Contenu HTML)
             var content = `
                 <div style="min-width:200px">
                     <div class="popup-header">${p.nom} (${p.region})</div>
                     <table class="popup-table" style="margin-top:5px">
                         <tr><td colspan="2"><b>🌱 Agriculture</b></td></tr>
-                        <tr><td>${p.agri_1}</td><td><b>${p.vol_agri_1} T</b></td></tr>
-                        <tr><td>${p.agri_2}</td><td>${p.vol_agri_2} T</td></tr>
+                        <tr><td>${p.agri_1 || '-'}</td><td><b>${p.vol_agri_1 || 0} T</b></td></tr>
+                        <tr><td>${p.agri_2 || '-'}</td><td>${p.vol_agri_2 || 0} T</td></tr>
                         
                         <tr><td colspan="2" style="border-top:1px solid #ccc"><b>🐄 Élevage</b></td></tr>
-                        <tr><td>${p.elev_1}</td><td><b>${p.vol_elev_1}</b></td></tr>
+                        <tr><td>${p.elev_1 || '-'}</td><td><b>${p.vol_elev_1 || 0}</b></td></tr>
                         
                         <tr><td colspan="2" style="border-top:1px solid #ccc"><b>🐟 Pêche</b></td></tr>
-                        <tr><td colspan="2">${p.vol_peche > 0 ? p.peche_type + " ("+p.vol_peche+" T)" : "<i>Néant</i>"}</td></tr>
+                        <tr><td colspan="2">${p.vol_peche > 0 ? (p.peche_type || 'Pêche') + " ("+p.vol_peche+" T)" : "<i>Néant</i>"}</td></tr>
                     </table>
                 </div>
             `;
             layer.bindPopup(content);
         }
 
-     var url = "http://localhost:8080/geoserver/cameroun/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=cameroun:vue_globale&outputFormat=application/json";
+        // ---------------------------------------------------------
+        // CHARGEMENT DES DONNÉES (FETCH)
+        // ---------------------------------------------------------
+        console.log("Connexion à l'API : " + API_URL);
 
-fetch(url)
-    .then(response => response.json())
-    .then(data => {
-        // C'est ici qu'on reconnecte tes données à Leaflet
-        globalData = data;
-        updateMap();
-        
-        // Zoom automatique sur le Cameroun
-        var bounds = L.geoJSON(data).getBounds();
-        map.fitBounds(bounds);
-    })
-    .catch(error => console.error('Erreur GeoServer:', error));
+        fetch(API_URL)
+            .then(res => {
+                if (!res.ok) throw new Error("Erreur HTTP " + res.status);
+                return res.json();
+            })
+            .then(data => {
+                console.log("Données chargées !", data);
+                globalData = data;
+                updateMap();
+                var bounds = L.geoJSON(data).getBounds();
+                map.fitBounds(bounds);
+            })
+            .catch(err => {
+                console.error("ERREUR CHARGEMENT :", err);
+                alert("Impossible de charger les données. Vérifiez votre connexion Internet.");
+            });
 
+        // ---------------------------------------------------------
+        // INTERACTIONS
+        // ---------------------------------------------------------
         function updateMap() {
             if (geojsonLayer) map.removeLayer(geojsonLayer);
-            
             geojsonLayer = L.geoJSON(globalData, {
                 style: style,
                 onEachFeature: onEachFeature
             }).addTo(map);
-
             updateLegend();
         }
 
-        // --- NOUVELLE FONCTION DE RECHERCHE ---
         function searchDept() {
             var searchVal = document.getElementById('search-input').value.toLowerCase();
             var found = false;
-
             geojsonLayer.eachLayer(function(layer) {
                 var name = layer.feature.properties.nom.toLowerCase();
-                
-                // Utilisation de 'includes' pour trouver même si on tape une partie du nom
                 if (name.includes(searchVal) && searchVal.length > 2) {
                     map.fitBounds(layer.getBounds());
                     layer.openPopup();
@@ -202,16 +196,12 @@ fetch(url)
                     geojsonLayer.resetStyle(layer);
                 }
             });
-
-            if(!found && searchVal.length > 2) {
-                console.log("Département non trouvé");
-            }
         }
 
         function updateLegend() {
             var mode = document.getElementById('mode').value;
             var div = document.getElementById('legend');
-            var grades, labels;
+            var grades;
 
             if(mode === 'agriculture') {
                 div.innerHTML = "<b>Agri (Tonnes)</b><br>";
@@ -224,6 +214,7 @@ fetch(url)
                 grades = [0, 5000, 15000, 30000, 45000];
             }
 
+            div.innerHTML += '<div style="margin-top:5px">';
             for (var i = 0; i < grades.length; i++) {
                 var val = grades[i] + 1;
                 div.innerHTML +=
@@ -231,6 +222,7 @@ fetch(url)
                     (grades[i] === 0 ? "Faible / Nul" : "> " + grades[i]) +
                     '</div>';
             }
+            div.innerHTML += '</div>';
         }
     </script>
 </body>
