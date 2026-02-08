@@ -1,34 +1,33 @@
 import csv
 import random
 
-# Départements et leurs régions
+# CORRECTION MAJEURE : Noms alignés exactement sur la base GADM (SQL)
+# - Remplacement des tirets par des espaces (sauf cas particuliers)
+# - Ajout des accents (Bénoué, Kéllé, etc.)
 data_structure = {
-    "Adamaoua": ["Djerem", "Faro-et-Deo", "Mayo-Banyo", "Mbere", "Vina"],
-    "Centre": ["Haute-Sanaga", "Lekie", "Mbam-et-Inoubou", "Mbam-et-Kim", "Mefou-et-Afamba", "Mefou-et-Akono", "Mfoundi", "Nyong-et-Kelle", "Nyong-et-Mfoumou", "Nyong-et-So'o"],
-    "Est": ["Boumba-et-Ngoko", "Haut-Nyong", "Kadey", "Lom-et-Djerem"],
-    "Extreme-Nord": ["Diamare", "Logone-et-Chari", "Mayo-Danay", "Mayo-Kani", "Mayo-Sava", "Mayo-Tsanaga"],
-    "Littoral": ["Moungo", "Nkam", "Sanaga-Maritime", "Wouri"],
-    "Nord": ["Benoue", "Faro", "Mayo-Louti", "Mayo-Rey"],
-    "Nord-Ouest": ["Boyo", "Bui", "Donga-Mantung", "Menchum", "Mezam", "Momo", "Ngo-Ketunjia"],
-    "Ouest": ["Bamboutos", "Haut-Nkam", "Hauts-Plateaux", "Koung-Khi", "Menoua", "Mifi", "Nde", "Noun"],
-    "Sud": ["Dja-et-Lobo", "Mvila", "Ocean", "Vallee-du-Ntem"],
-    "Sud-Ouest": ["Fako", "Koupe-Manengouba", "Lebialem", "Manyu", "Meme", "Ndian"]
+    "Adamaoua": ["Djerem", "Faro et Déo", "Mayo Banyo", "Mbéré", "Vina"],
+    "Centre": ["Haute Sanaga", "Lekié", "Mbam et Inoubou", "Mbam et Kim", "Mefou et Afamba", "Mefou et Akono", "Mfoundi", "Nyong et Kéllé", "Nyong et Mfoumou", "Nyong et So'o"],
+    "Est": ["Boumba et Ngoko", "Haut Nyong", "Kadey", "Lom et Djerem"],
+    "Extreme-Nord": ["Diamaré", "Logone et Chari", "Mayo Danay", "Mayo Kani", "Mayo Sava", "Mayo Tsanaga"],
+    "Littoral": ["Moungo", "Nkam", "Sanaga Maritime", "Wouri"],
+    "Nord": ["Bénoué", "Faro", "Mayo Louti", "Mayo Rey"],
+    "Nord-Ouest": ["Boyo", "Bui", "Donga Mantung", "Menchum", "Mezam", "Momo", "Ngo Ketunjia"],
+    "Ouest": ["Bamboutos", "Haut Nkam", "Hauts Plateaux", "Koung Khi", "Menoua", "Mifi", "Ndé", "Noun"],
+    "Sud": ["Dja et Lobo", "Mvila", "Océan", "Vallée du Ntem"],
+    "Sud-Ouest": ["Fako", "Koupé Manengouba", "Lebialem", "Manyu", "Meme", "Ndian"]
 }
 
-# Départements ayant accès à la pêche (Mer ou grands fleuves/lacs)
-zones_peche = ["Wouri", "Sanaga-Maritime", "Fako", "Ndian", "Ocean", "Logone-et-Chari", "Mayo-Danay", "Benoue"]
+# Mise à jour des zones de pêche avec les bons noms (accents/espaces)
+zones_peche = ["Wouri", "Sanaga Maritime", "Fako", "Ndian", "Océan", "Logone et Chari", "Mayo Danay", "Bénoué"]
 
 def generate_prod(liste_choix, base_vol):
-    # Choisir 3 produits au hasard dans la liste sans doublons
     choix = random.sample(liste_choix, 3)
-    # Générer des volumes décroissants (le 1er est le dominant)
     v1 = base_vol + random.randint(0, 5000)
-    v2 = int(v1 * 0.6) # Le 2ème produit fait 60% du premier
-    v3 = int(v1 * 0.3) # Le 3ème fait 30%
+    v2 = int(v1 * 0.6)
+    v3 = int(v1 * 0.3)
     return choix, [v1, v2, v3]
 
 def get_data(dept, region):
-    # Configuration par zone agro-écologique
     if region in ["Extreme-Nord", "Nord", "Adamaoua"]:
         cultures = ["Coton", "Sorgho", "Oignon", "Arachide", "Maïs", "Mil"]
         elevages = ["Bovins", "Caprins", "Ovins", "Volailles"]
@@ -39,19 +38,15 @@ def get_data(dept, region):
         elevages = ["Volailles", "Porcins", "Lapins", "Caprins"]
         vol_agri = 12000
         vol_elev = 20000
-    else: # Grand Sud forestier
+    else: 
         cultures = ["Cacao", "Café Robusta", "Banane-Plantain", "Manioc", "Huile de Palme", "Hévéa"]
         elevages = ["Porcins", "Volailles", "Pisciculture", "Petits Ruminants"]
         vol_agri = 25000
         vol_elev = 5000
 
-    # Génération Agriculture
     c_noms, c_vols = generate_prod(cultures, vol_agri)
-    
-    # Génération Élevage
     e_noms, e_vols = generate_prod(elevages, vol_elev)
 
-    # Génération Pêche
     peche_type = "Aucune"
     peche_vol = 0
     if dept in zones_peche:
@@ -65,13 +60,11 @@ def get_data(dept, region):
         peche_type, peche_vol
     ]
 
-# Écriture du CSV
 filename = "donnees_agricoles_completes.csv"
-print(f"Génération de {filename}...")
+print(f"Génération de {filename} avec les noms corrigés (GADM)...")
 
 with open(filename, mode='w', newline='', encoding='utf-8') as file:
     writer = csv.writer(file, delimiter=';')
-    # En-tête (Headres)
     writer.writerow([
         "nom_dept", "nom_region",
         "agri_1", "vol_agri_1", "agri_2", "vol_agri_2", "agri_3", "vol_agri_3",
@@ -83,4 +76,4 @@ with open(filename, mode='w', newline='', encoding='utf-8') as file:
         for dept in depts:
             writer.writerow(get_data(dept, region))
 
-print("Terminé ! Données riches générées.")
+print("Terminé ! Les données correspondent maintenant à la carte.")

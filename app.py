@@ -6,15 +6,35 @@ import json
 app = Flask(__name__)
 CORS(app)
 
+#def get_db_connection():
+ #   conn = psycopg2.connect(
+  #      host="127.0.0.1",
+   #     database="cameroun_db",
+    #    user="jude",
+     #   password="123456789", # Ton mot de passe validé
+      #  port="5432"          # Ton port validé
+    #)
+    #return conn
+
+
 def get_db_connection():
-    conn = psycopg2.connect(
-        host="127.0.0.1",
-        database="cameroun_db",
-        user="postgres",
-        password="123456789", # Ton mot de passe validé
-        port="5433"          # Ton port validé
-    )
+    # Récupère l'URL de la base sécurisée fournie par Render
+    db_url = os.environ.get('DATABASE_URL')
+    
+    if db_url:
+        # Connexion Cloud (Render)
+        conn = psycopg2.connect(db_url)
+    else:
+        # Connexion Locale (Ton PC - Sécurité au cas où)
+        conn = psycopg2.connect(
+            host="127.0.0.1",
+            database="cameroun_db",
+            user="jude",
+            password="123456789",
+            port="5432"
+        )
     return conn
+
 
 @app.route('/')
 def home():
